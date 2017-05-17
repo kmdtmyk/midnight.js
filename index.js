@@ -1,0 +1,3 @@
+class Midnight extends Date{
+
+}
