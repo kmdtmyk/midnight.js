@@ -2,13 +2,18 @@
   "name": "midnight",
   "version": "0.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
+    "start": "webpack --watch",
     "test": "ava --watch --color"
   },
   "author": "",
   "license": "MIT",
   "devDependencies": {
     "ava": "^0.19.1"
+  },
+  "dependencies": {
+    "babel-loader": "^7.0.0",
+    "webpack": "^2.5.1"
   }
 }
