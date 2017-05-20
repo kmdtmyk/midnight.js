@@ -10,10 +10,9 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "ava": "^0.19.1"
-  },
-  "dependencies": {
+    "ava": "^0.19.1",
     "babel-loader": "^7.0.0",
     "webpack": "^2.5.1"
-  }
+  },
+  "dependencies": {}
 }
