@@ -55,6 +55,10 @@ export default class Midnight extends Date{
     return d1 < d2 ? d1 : d2
   }
 
+  startOfMonth(){
+    return this.day(1)
+  }
+
   toObject(){
     const year = this.getFullYear()
     const month = this.getMonth() + 1

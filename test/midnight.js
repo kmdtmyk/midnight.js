@@ -93,6 +93,12 @@ test('month', t => {
   t.true(Midnight.equals(date.month(6), '2016/06/30'))
 })
 
+test('startOfMonth', t => {
+  t.true(Midnight.equals(new Midnight('2017/05/01').startOfMonth(), '2017/05/01'))
+  t.true(Midnight.equals(new Midnight('2017/05/20').startOfMonth(), '2017/05/01'))
+  t.true(Midnight.equals(new Midnight('2017/05/31').startOfMonth(), '2017/05/01'))
+})
+
 test('toObject', t => {
   const date = new Midnight('2017/05/20')
   t.deepEqual(date.toObject(), {year: 2017, month: 5, day: 20})
