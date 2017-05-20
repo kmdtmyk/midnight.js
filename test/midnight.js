@@ -53,6 +53,15 @@ test('create', t => {
   t.true(Midnight.equals(Midnight.create(2017, 5, 32), '2017/06/01'))
 })
 
+test('endOfMonth', t => {
+  t.true(Midnight.equals(new Midnight('2016/08/01').endOfMonth(), '2016/08/31'))
+  t.true(Midnight.equals(new Midnight('2016/08/15').endOfMonth(), '2016/08/31'))
+  t.true(Midnight.equals(new Midnight('2016/08/31').endOfMonth(), '2016/08/31'))
+
+  t.true(Midnight.equals(new Midnight('2016/02/25').endOfMonth(), '2016/02/29'))
+  t.true(Midnight.equals(new Midnight('2017/02/25').endOfMonth(), '2017/02/28'))
+})
+
 test('equals', t => {
   const date = new Midnight('2017/05/20')
   t.true(date.equals(new Date('2017/05/20')))

@@ -29,6 +29,10 @@ export default class Midnight extends Date{
     return Midnight.create(o.year, o.month, day)
   }
 
+  endOfMonth(){
+    return this.addMonths(1).day(0)
+  }
+
   equals(value){
     if(!value){
       return false
