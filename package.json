@@ -2,7 +2,7 @@
   "name": "midnight",
   "version": "0.0.0",
   "description": "",
-  "main": "src/index.js",
+  "main": "dist/midnight.js",
   "scripts": {
     "start": "webpack --watch",
     "test": "ava --watch --color"
