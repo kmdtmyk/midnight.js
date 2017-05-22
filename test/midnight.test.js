@@ -53,6 +53,19 @@ test('create', t => {
   t.true(Midnight.equals(Midnight.create(2017, 5, 32), '2017/06/01'))
 })
 
+test('diffInDays', t => {
+  const date = new Midnight('2017/05/22')
+  t.is(date.diffInDays(new Date('2017/05/27')), 5)
+  t.is(date.diffInDays(new Midnight('2017/05/27')), 5)
+  t.is(date.diffInDays('2017/05/27'), 5)
+  t.is(date.diffInDays(new Date('2017/04/10')), -42)
+  t.is(date.diffInDays(new Date('2017/05/22')), 0)
+  t.is(date.diffInDays(new Date('2017/06/10')), 19)
+  t.true(Number.isNaN(date.diffInDays(null)))
+  t.true(Number.isNaN(date.diffInDays(undefined)))
+  t.true(Number.isNaN(date.diffInDays('invalid date')))
+})
+
 test('endOfMonth', t => {
   t.true(Midnight.equals(new Midnight('2016/08/01').endOfMonth(), '2016/08/31'))
   t.true(Midnight.equals(new Midnight('2016/08/15').endOfMonth(), '2016/08/31'))

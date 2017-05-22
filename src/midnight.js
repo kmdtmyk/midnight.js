@@ -1,3 +1,8 @@
+const SECOND = 1000
+const MINUTE = SECOND * 60
+const HOUR = MINUTE * 60
+const DAY = HOUR * 24
+
 export default class Midnight extends Date{
 
   constructor(){
@@ -27,6 +32,13 @@ export default class Midnight extends Date{
     }
     const o = this.toObject()
     return Midnight.create(o.year, o.month, day)
+  }
+
+  diffInDays(value){
+    if(!value){
+      return NaN
+    }
+    return Math.floor((new Midnight(value) - this) / DAY)
   }
 
   endOfMonth(){
