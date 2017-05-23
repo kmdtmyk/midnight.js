@@ -71,6 +71,36 @@ export default class Midnight extends Date{
     return d1 < d2 ? d1 : d2
   }
 
+  setHours(){
+    super.setHours(...arguments)
+    this._fixTime()
+    return this.valueOf()
+  }
+
+  setMinutes(){
+    super.setMinutes(...arguments)
+    this._fixTime()
+    return this.valueOf()
+  }
+
+  setSeconds(){
+    super.setSeconds(...arguments)
+    this._fixTime()
+    return this.valueOf()
+  }
+
+  setMilliseconds(){
+    super.setMilliseconds(...arguments)
+    this._fixTime()
+    return this.valueOf()
+  }
+
+  setTime(){
+    super.setTime(...arguments)
+    this._fixTime()
+    return this.valueOf()
+  }
+
   startOfMonth(){
     return this.day(1)
   }

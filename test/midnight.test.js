@@ -115,6 +115,45 @@ test('month', t => {
   t.true(Midnight.equals(date.month(6), '2016/06/30'))
 })
 
+test('setHours', t => {
+  const date = new Midnight('2016/05/20')
+  const value = date.valueOf()
+  t.is(date.setHours(1), value)
+  t.is(date.getHours(), 0)
+  date.setHours(-1)
+  t.is(date.getHours(), 0)
+  t.is(date.getDate(), 19)
+})
+
+test('setMinutes', t => {
+  const date = new Midnight('2016/05/20')
+  const value = date.valueOf()
+  t.is(date.setMinutes(1), value)
+  t.is(date.getMinutes(), 0)
+})
+
+test('setSeconds', t => {
+  const date = new Midnight('2016/05/20')
+  const value = date.valueOf()
+  t.is(date.setSeconds(1), value)
+  t.is(date.getSeconds(), 0)
+})
+
+test('setMilliseconds', t => {
+  const date = new Midnight('2016/05/20')
+  const value = date.valueOf()
+  t.is(date.setMilliseconds(1), value)
+  t.is(date.getMilliseconds(), 0)
+})
+
+test('setTime', t => {
+  const d = new Date()
+  const date = new Midnight(d)
+  const time = date.getTime()
+  date.setTime(d.getTime())
+  t.is(date.getTime(), time)
+})
+
 test('startOfMonth', t => {
   t.true(Midnight.equals(new Midnight('2017/05/01').startOfMonth(), '2017/05/01'))
   t.true(Midnight.equals(new Midnight('2017/05/20').startOfMonth(), '2017/05/01'))
