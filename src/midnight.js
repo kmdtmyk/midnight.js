@@ -34,7 +34,7 @@ export default class Midnight extends Date{
     return Midnight.create(o.year, o.month, day)
   }
 
-  diffInDays(value){
+  differenceInDays(value){
     if(!value){
       return NaN
     }

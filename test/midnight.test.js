@@ -53,17 +53,17 @@ test('create', t => {
   t.true(Midnight.equals(Midnight.create(2017, 5, 32), '2017/06/01'))
 })
 
-test('diffInDays', t => {
+test('differenceInDays', t => {
   const date = new Midnight('2017/05/22')
-  t.is(date.diffInDays(new Date('2017/05/27')), 5)
-  t.is(date.diffInDays(new Midnight('2017/05/27')), 5)
-  t.is(date.diffInDays('2017/05/27'), 5)
-  t.is(date.diffInDays(new Date('2017/04/10')), -42)
-  t.is(date.diffInDays(new Date('2017/05/22')), 0)
-  t.is(date.diffInDays(new Date('2017/06/10')), 19)
-  t.true(Number.isNaN(date.diffInDays(null)))
-  t.true(Number.isNaN(date.diffInDays(undefined)))
-  t.true(Number.isNaN(date.diffInDays('invalid date')))
+  t.is(date.differenceInDays(new Date('2017/05/27')), 5)
+  t.is(date.differenceInDays(new Midnight('2017/05/27')), 5)
+  t.is(date.differenceInDays('2017/05/27'), 5)
+  t.is(date.differenceInDays(new Date('2017/04/10')), -42)
+  t.is(date.differenceInDays(new Date('2017/05/22')), 0)
+  t.is(date.differenceInDays(new Date('2017/06/10')), 19)
+  t.true(Number.isNaN(date.differenceInDays(null)))
+  t.true(Number.isNaN(date.differenceInDays(undefined)))
+  t.true(Number.isNaN(date.differenceInDays('invalid date')))
 })
 
 test('endOfMonth', t => {
