@@ -79,6 +79,8 @@ test('month', t => {
 
 test('nextDay', t => {
   const date = new Midnight('2017/05/15')
+  t.true(Midnight.equals(date.nextDay(), '2017/05/16'))
+
   t.true(Midnight.equals(date.nextDay(-15), '2017/04/30'))
   t.true(Midnight.equals(date.nextDay(-1), '2017/05/14'))
   t.true(Midnight.equals(date.nextDay(0), '2017/05/15'))
@@ -88,6 +90,8 @@ test('nextDay', t => {
 
 test('nextMonth', t => {
   let date = new Midnight('2016/08/01')
+  t.true(Midnight.equals(date.nextMonth(), '2016/09/01'))
+
   t.true(Midnight.equals(date.nextMonth(1), '2016/09/01'))
   t.true(Midnight.equals(date.nextMonth(4), '2016/12/01'))
   t.true(Midnight.equals(date.nextMonth(5), '2017/01/01'))
@@ -105,6 +109,8 @@ test('nextMonth', t => {
 
 test('nextYear', t => {
   let date = new Midnight('2016/05/15')
+  t.true(Midnight.equals(date.nextYear(), '2017/05/15'))
+
   t.true(Midnight.equals(date.nextYear(-1), '2015/05/15'))
   t.true(Midnight.equals(date.nextYear(0), '2016/05/15'))
   t.true(Midnight.equals(date.nextYear(1), '2017/05/15'))
