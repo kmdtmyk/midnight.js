@@ -10,15 +10,15 @@ export default class Midnight extends Date{
     this._fixTime()
   }
 
-  addDays(days){
+  nextDay(days){
     return this.day(this.day() + days)
   }
 
-  addMonths(months){
+  nextMonth(months){
     return this.month(this.month() + months)
   }
 
-  addYears(years){
+  nextYear(years){
     return this.year(this.year() + years)
   }
 
@@ -42,7 +42,7 @@ export default class Midnight extends Date{
   }
 
   endOfMonth(){
-    return this.addMonths(1).day(0)
+    return this.nextMonth(1).day(0)
   }
 
   equals(value){

@@ -9,44 +9,6 @@ test('time is fixed on 00:00:00.000', t => {
   t.is(date.getMilliseconds(), 0)
 })
 
-test('addDays', t => {
-  const date = new Midnight('2017/05/15')
-  t.true(Midnight.equals(date.addDays(-15), '2017/04/30'))
-  t.true(Midnight.equals(date.addDays(-1), '2017/05/14'))
-  t.true(Midnight.equals(date.addDays(0), '2017/05/15'))
-  t.true(Midnight.equals(date.addDays(1), '2017/05/16'))
-  t.true(Midnight.equals(date.addDays(17), '2017/06/01'))
-})
-
-test('addMonths', t => {
-  let date = new Midnight('2016/08/01')
-  t.true(Midnight.equals(date.addMonths(1), '2016/09/01'))
-  t.true(Midnight.equals(date.addMonths(4), '2016/12/01'))
-  t.true(Midnight.equals(date.addMonths(5), '2017/01/01'))
-
-  date = new Midnight('2016/08/15')
-  t.true(Midnight.equals(date.addMonths(-1), '2016/07/15'))
-  t.true(Midnight.equals(date.addMonths(0), '2016/08/15'))
-  t.true(Midnight.equals(date.addMonths(1), '2016/09/15'))
-
-  date = new Midnight('2016/08/31')
-  t.true(Midnight.equals(date.addMonths(1), '2016/09/30'))
-  t.true(Midnight.equals(date.addMonths(6), '2017/02/28'))
-  t.true(Midnight.equals(date.addMonths(-2), '2016/06/30'))
-})
-
-test('addYears', t => {
-  let date = new Midnight('2016/05/15')
-  t.true(Midnight.equals(date.addYears(-1), '2015/05/15'))
-  t.true(Midnight.equals(date.addYears(0), '2016/05/15'))
-  t.true(Midnight.equals(date.addYears(1), '2017/05/15'))
-
-  date = new Midnight('2016/02/29')
-  t.true(Midnight.equals(date.addYears(-1), '2015/02/28'))
-  t.true(Midnight.equals(date.addYears(1), '2017/02/28'))
-  t.true(Midnight.equals(date.addYears(4), '2020/02/29'))
-})
-
 test('create', t => {
   t.true(Midnight.equals(Midnight.create(2017, 5, 20), '2017/05/20'))
   t.true(Midnight.equals(Midnight.create(2017, 5, 0), '2017/04/30'))
@@ -113,6 +75,44 @@ test('month', t => {
   t.true(Midnight.equals(date.month(9), '2016/09/30'))
   t.true(Midnight.equals(date.month(2), '2016/02/29'))
   t.true(Midnight.equals(date.month(6), '2016/06/30'))
+})
+
+test('nextDay', t => {
+  const date = new Midnight('2017/05/15')
+  t.true(Midnight.equals(date.nextDay(-15), '2017/04/30'))
+  t.true(Midnight.equals(date.nextDay(-1), '2017/05/14'))
+  t.true(Midnight.equals(date.nextDay(0), '2017/05/15'))
+  t.true(Midnight.equals(date.nextDay(1), '2017/05/16'))
+  t.true(Midnight.equals(date.nextDay(17), '2017/06/01'))
+})
+
+test('nextMonth', t => {
+  let date = new Midnight('2016/08/01')
+  t.true(Midnight.equals(date.nextMonth(1), '2016/09/01'))
+  t.true(Midnight.equals(date.nextMonth(4), '2016/12/01'))
+  t.true(Midnight.equals(date.nextMonth(5), '2017/01/01'))
+
+  date = new Midnight('2016/08/15')
+  t.true(Midnight.equals(date.nextMonth(-1), '2016/07/15'))
+  t.true(Midnight.equals(date.nextMonth(0), '2016/08/15'))
+  t.true(Midnight.equals(date.nextMonth(1), '2016/09/15'))
+
+  date = new Midnight('2016/08/31')
+  t.true(Midnight.equals(date.nextMonth(1), '2016/09/30'))
+  t.true(Midnight.equals(date.nextMonth(6), '2017/02/28'))
+  t.true(Midnight.equals(date.nextMonth(-2), '2016/06/30'))
+})
+
+test('nextYear', t => {
+  let date = new Midnight('2016/05/15')
+  t.true(Midnight.equals(date.nextYear(-1), '2015/05/15'))
+  t.true(Midnight.equals(date.nextYear(0), '2016/05/15'))
+  t.true(Midnight.equals(date.nextYear(1), '2017/05/15'))
+
+  date = new Midnight('2016/02/29')
+  t.true(Midnight.equals(date.nextYear(-1), '2015/02/28'))
+  t.true(Midnight.equals(date.nextYear(1), '2017/02/28'))
+  t.true(Midnight.equals(date.nextYear(4), '2020/02/29'))
 })
 
 test('setHours', t => {
@@ -184,11 +184,11 @@ test('immutable', t => {
   t.true(Midnight.equals(date, value))
   date.year(2000)
   t.true(Midnight.equals(date, value))
-  date.addDays(1)
+  date.nextDay(1)
   t.true(Midnight.equals(date, value))
-  date.addMonths(1)
+  date.nextMonth(1)
   t.true(Midnight.equals(date, value))
-  date.addYears(1)
+  date.nextYear(1)
   t.true(Midnight.equals(date, value))
   date.startOfMonth()
   t.true(Midnight.equals(date, value))
