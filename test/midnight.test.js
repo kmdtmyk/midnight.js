@@ -42,6 +42,13 @@ test('endOfMonth', t => {
   t.true(Midnight.equals(new Midnight('2017/02/25').endOfMonth(), '2017/02/28'))
 })
 
+test('endOfYear', t => {
+  t.true(Midnight.equals(new Midnight('2017/01/01').endOfYear(), '2017/12/31'))
+  t.true(Midnight.equals(new Midnight('2017/05/15').endOfYear(), '2017/12/31'))
+  t.true(Midnight.equals(new Midnight('2017/12/31').endOfYear(), '2017/12/31'))
+  t.true(Midnight.equals(new Midnight('2018/01/01').endOfYear(), '2018/12/31'))
+})
+
 test('equals', t => {
   const date = new Midnight('2017/05/20')
   t.true(date.equals(new Date('2017/05/20')))
@@ -213,5 +220,7 @@ test('immutable', t => {
   date.startOfYear()
   t.true(Midnight.equals(date, value))
   date.endOfMonth()
+  t.true(Midnight.equals(date, value))
+  date.endOfYear()
   t.true(Midnight.equals(date, value))
 })

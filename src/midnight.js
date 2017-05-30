@@ -45,6 +45,10 @@ export default class Midnight extends Date{
     return this.nextMonth(1).day(0)
   }
 
+  endOfYear(){
+    return this.month(12).endOfMonth()
+  }
+
   equals(value){
     if(!value){
       return false
