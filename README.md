@@ -38,6 +38,9 @@ date.year(2020) // 2020/05/15
 
 date.startOfMonth() // 2017/05/01
 date.endOfMonth() // 2017/05/31
+
+date.startOfYear() // 2017/01/01
+date.endOfYear() // 2017/12/31
 ```
 
 ### Immutable
