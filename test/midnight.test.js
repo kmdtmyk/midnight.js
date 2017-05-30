@@ -9,6 +9,11 @@ test('time is fixed on 00:00:00.000', t => {
   t.is(date.getMilliseconds(), 0)
 })
 
+test('instanceof Date', t => {
+  const date = new Midnight()
+  t.true(date instanceof Date)
+})
+
 test('create', t => {
   t.true(Midnight.equals(Midnight.create(2017, 5, 20), '2017/05/20'))
   t.true(Midnight.equals(Midnight.create(2017, 5, 0), '2017/04/30'))
