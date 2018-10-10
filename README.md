@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/kmdtmyk/midnight.svg?branch=master)](https://travis-ci.org/kmdtmyk/midnight)
+[![Build Status](https://travis-ci.org/kmdtmyk/midnight.js.svg?branch=master)](https://travis-ci.org/kmdtmyk/midnight)
 
 ## Installation
 
