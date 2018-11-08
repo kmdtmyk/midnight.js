@@ -4,16 +4,20 @@
   "description": "A javascript library that deals with date only not datetime.",
   "main": "dist/midnight.js",
   "scripts": {
-    "start": "npm run build -- --watch & npm test -- --watch",
-    "build": "webpack",
-    "test": "ava --color"
+    "start": "npm test -- --watch",
+    "test": "jest",
+    "build": "webpack"
   },
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "ava": "^0.19.1",
-    "babel-loader": "^7.0.0",
-    "webpack": "^2.5.1"
+    "@babel/core": "^7.1.5",
+    "@babel/preset-env": "^7.1.5",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-loader": "^7.1.5",
+    "jest": "^23.6.0",
+    "webpack": "^2.7.0",
+    "webpack-cli": "^3.1.2"
   },
   "dependencies": {}
 }

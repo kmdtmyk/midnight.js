@@ -1,27 +1,33 @@
-const path = require('path')
+const path =  require('path')
 
 module.exports = {
-  entry: './src',
+  mode: process.env.NODE_ENV || 'development',
+  entry: './src/index.js',
   output: {
-    path: __dirname + '/dist',
+    path: path.resolve(__dirname, './dist'),
     filename: 'midnight.js',
     library: 'Midnight',
     libraryTarget: 'umd',
+    globalObject: 'this',
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
-        loader: 'babel-loader',
-        exclude: /node_modules/,
-      },
+        use: [
+          {
+            loader: 'babel-loader',
+          }
+        ]
+      }
     ]
   },
   resolve: {
     modules: [
+      path.resolve('./src'),
       path.resolve('./node_modules'),
     ],
     extensions: ['.js'],
   },
-  devtool: 'inline-source-map',
+  devtool: 'source-map',
 }
