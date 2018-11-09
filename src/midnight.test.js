@@ -53,6 +53,46 @@ describe('constructor', () => {
 
 })
 
+describe('operator', () => {
+
+  test.skip('==', () => {
+    expect(new Midnight('2018/05/15') == new Midnight('2018/05/14')).toBe(false)
+    expect(new Midnight('2018/05/15') == new Midnight('2018/05/15')).toBe(true)
+    expect(new Midnight('2018/05/15') == new Midnight('2018/05/16')).toBe(false)
+  })
+
+  test.skip('!=', () => {
+    expect(new Midnight('2018/05/15') != new Midnight('2018/05/14')).toBe(true)
+    expect(new Midnight('2018/05/15') != new Midnight('2018/05/15')).toBe(false)
+    expect(new Midnight('2018/05/15') != new Midnight('2018/05/16')).toBe(true)
+  })
+
+  test('<', () => {
+    expect(new Midnight('2018/05/15') < new Midnight('2018/05/14')).toBe(false)
+    expect(new Midnight('2018/05/15') < new Midnight('2018/05/15')).toBe(false)
+    expect(new Midnight('2018/05/15') < new Midnight('2018/05/16')).toBe(true)
+  })
+
+  test('<=', () => {
+    expect(new Midnight('2018/05/15') <= new Midnight('2018/05/14')).toBe(false)
+    expect(new Midnight('2018/05/15') <= new Midnight('2018/05/15')).toBe(true)
+    expect(new Midnight('2018/05/15') <= new Midnight('2018/05/16')).toBe(true)
+  })
+
+  test('>', () => {
+    expect(new Midnight('2018/05/15') > new Midnight('2018/05/14')).toBe(true)
+    expect(new Midnight('2018/05/15') > new Midnight('2018/05/15')).toBe(false)
+    expect(new Midnight('2018/05/15') > new Midnight('2018/05/16')).toBe(false)
+  })
+
+  test('>=', () => {
+    expect(new Midnight('2018/05/15') >= new Midnight('2018/05/14')).toBe(true)
+    expect(new Midnight('2018/05/15') >= new Midnight('2018/05/15')).toBe(true)
+    expect(new Midnight('2018/05/15') >= new Midnight('2018/05/16')).toBe(false)
+  })
+
+})
+
 test('instanceof Date', () => {
   const date = new Midnight()
   expect(date).toBeInstanceOf(Date)
