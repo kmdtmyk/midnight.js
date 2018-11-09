@@ -323,6 +323,12 @@ test('nextSaturday', () => {
   expect(new Midnight('2018/11/20').nextSaturday(-2)).toSameDate('2018/11/10')
 })
 
+test('isToday', () => {
+  expect(new Midnight().isToday()).toBe(true)
+  expect(new Midnight().nextDay(-1).isToday()).toBe(false)
+  expect(new Midnight().nextDay(1).isToday()).toBe(false)
+})
+
 test('isSunday', () => {
   expect(new Midnight('2018/11/11').isSunday()).toBe(true)
   expect(new Midnight('2018/11/12').isSunday()).toBe(false)

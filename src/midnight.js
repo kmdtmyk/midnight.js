@@ -120,6 +120,10 @@ export default class Midnight extends Date{
     return this.nextDayOfWeek(SATURDAY, times)
   }
 
+  isToday(){
+    return this.equals(new Date())
+  }
+
   isSunday(){
     return this.getDay() === SUNDAY
   }
