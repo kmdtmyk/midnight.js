@@ -3,6 +3,14 @@ const MINUTE = SECOND * 60
 const HOUR = MINUTE * 60
 const DAY = HOUR * 24
 
+const SUNDAY = 0
+const MONDAY = 1
+const TUESDAY = 2
+const WEDNESDAY = 3
+const THURSDAY = 4
+const FRIDAY = 5
+const SATURDAY = 6
+
 export default class Midnight extends Date{
 
   constructor(){
@@ -73,6 +81,34 @@ export default class Midnight extends Date{
     const d1 = new Midnight(o.year, month, o.day)
     const d2 = new Midnight(o.year, month + 1, 0)
     return d1 < d2 ? d1 : d2
+  }
+
+  isSunday(){
+    return this.getDay() === SUNDAY
+  }
+
+  isMonday(){
+    return this.getDay() === MONDAY
+  }
+
+  isTuesday(){
+    return this.getDay() === TUESDAY
+  }
+
+  isWednesday(){
+    return this.getDay() === WEDNESDAY
+  }
+
+  isThursday(){
+    return this.getDay() === THURSDAY
+  }
+
+  isFriday(){
+    return this.getDay() === FRIDAY
+  }
+
+  isSaturday(){
+    return this.getDay() === SATURDAY
   }
 
   setHours(){

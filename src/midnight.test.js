@@ -174,6 +174,76 @@ test('nextYear', () => {
   expect(date.nextYear(4)).toSameDate('2020/02/29')
 })
 
+test('isSunday', () => {
+  expect(new Midnight('2018/11/11').isSunday()).toBe(true)
+  expect(new Midnight('2018/11/12').isSunday()).toBe(false)
+  expect(new Midnight('2018/11/13').isSunday()).toBe(false)
+  expect(new Midnight('2018/11/14').isSunday()).toBe(false)
+  expect(new Midnight('2018/11/15').isSunday()).toBe(false)
+  expect(new Midnight('2018/11/16').isSunday()).toBe(false)
+  expect(new Midnight('2018/11/17').isSunday()).toBe(false)
+})
+
+test('isMonday', () => {
+  expect(new Midnight('2018/11/11').isMonday()).toBe(false)
+  expect(new Midnight('2018/11/12').isMonday()).toBe(true)
+  expect(new Midnight('2018/11/13').isMonday()).toBe(false)
+  expect(new Midnight('2018/11/14').isMonday()).toBe(false)
+  expect(new Midnight('2018/11/15').isMonday()).toBe(false)
+  expect(new Midnight('2018/11/16').isMonday()).toBe(false)
+  expect(new Midnight('2018/11/17').isMonday()).toBe(false)
+})
+
+test('isTuesday', () => {
+  expect(new Midnight('2018/11/11').isTuesday()).toBe(false)
+  expect(new Midnight('2018/11/12').isTuesday()).toBe(false)
+  expect(new Midnight('2018/11/13').isTuesday()).toBe(true)
+  expect(new Midnight('2018/11/14').isTuesday()).toBe(false)
+  expect(new Midnight('2018/11/15').isTuesday()).toBe(false)
+  expect(new Midnight('2018/11/16').isTuesday()).toBe(false)
+  expect(new Midnight('2018/11/17').isTuesday()).toBe(false)
+})
+
+test('isWednesday', () => {
+  expect(new Midnight('2018/11/11').isWednesday()).toBe(false)
+  expect(new Midnight('2018/11/12').isWednesday()).toBe(false)
+  expect(new Midnight('2018/11/13').isWednesday()).toBe(false)
+  expect(new Midnight('2018/11/14').isWednesday()).toBe(true)
+  expect(new Midnight('2018/11/15').isWednesday()).toBe(false)
+  expect(new Midnight('2018/11/16').isWednesday()).toBe(false)
+  expect(new Midnight('2018/11/17').isWednesday()).toBe(false)
+})
+
+test('isThursday', () => {
+  expect(new Midnight('2018/11/11').isThursday()).toBe(false)
+  expect(new Midnight('2018/11/12').isThursday()).toBe(false)
+  expect(new Midnight('2018/11/13').isThursday()).toBe(false)
+  expect(new Midnight('2018/11/14').isThursday()).toBe(false)
+  expect(new Midnight('2018/11/15').isThursday()).toBe(true)
+  expect(new Midnight('2018/11/16').isThursday()).toBe(false)
+  expect(new Midnight('2018/11/17').isThursday()).toBe(false)
+})
+
+test('isFriday', () => {
+  expect(new Midnight('2018/11/11').isFriday()).toBe(false)
+  expect(new Midnight('2018/11/12').isFriday()).toBe(false)
+  expect(new Midnight('2018/11/13').isFriday()).toBe(false)
+  expect(new Midnight('2018/11/14').isFriday()).toBe(false)
+  expect(new Midnight('2018/11/15').isFriday()).toBe(false)
+  expect(new Midnight('2018/11/16').isFriday()).toBe(true)
+  expect(new Midnight('2018/11/17').isFriday()).toBe(false)
+})
+
+test('isSaturday', () => {
+  expect(new Midnight('2018/11/11').isSaturday()).toBe(false)
+  expect(new Midnight('2018/11/12').isSaturday()).toBe(false)
+  expect(new Midnight('2018/11/13').isSaturday()).toBe(false)
+  expect(new Midnight('2018/11/14').isSaturday()).toBe(false)
+  expect(new Midnight('2018/11/15').isSaturday()).toBe(false)
+  expect(new Midnight('2018/11/16').isSaturday()).toBe(false)
+  expect(new Midnight('2018/11/17').isSaturday()).toBe(true)
+})
+
 test('setHours', () => {
   const date = new Midnight('2016/05/20')
   const value = date.valueOf()
