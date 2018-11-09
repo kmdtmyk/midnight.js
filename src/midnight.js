@@ -11,6 +11,8 @@ const THURSDAY = 4
 const FRIDAY = 5
 const SATURDAY = 6
 
+const DAYS_PER_WEEK = 7
+
 export default class Midnight extends Date{
 
   constructor(){
@@ -22,12 +24,53 @@ export default class Midnight extends Date{
     this._setTimeToZero()
   }
 
+  /**
+   * Get day or set day.
+   * @param {Number} day
+   * @return {Number|Midnight} returns day (1-31) or new instance.
+   * @example new Midnight('2018/05/15').day() // => 15
+   * @example new Midnight('2018/05/15').day(20) // => 2018/05/20
+   */
   day(day){
     if(arguments.length === 0){
       return this.getDate()
     }
     const o = this.toObject()
     return new Midnight(o.year, o.month, day)
+  }
+
+  /**
+   * Get month or set month.
+   * @param {Number} month
+   * @return {Number|Midnight} returns month (1-12) or new instance.
+   * @example new Midnight('2018/05/15').month() // => 5
+   * @example new Midnight('2018/05/15').month(6) // => 2018/06/15
+   */
+  month(month){
+    const o = this.toObject()
+    if(arguments.length === 0){
+      return o.month
+    }
+    const d1 = new Midnight(o.year, month, o.day)
+    const d2 = new Midnight(o.year, month + 1, 0)
+    return d1 < d2 ? d1 : d2
+  }
+
+  /**
+   * Get year or set year.
+   * @param {Number} year
+   * @return {Number|Midnight} returns year or new instance.
+   * @example new Midnight('2018/05/15').year() // => 2018
+   * @example new Midnight('2018/05/15').year(2020) // => 2020/05/15
+   */
+  year(year){
+    const o = this.toObject()
+    if(arguments.length === 0){
+      return o.year
+    }
+    const d1 = new Midnight(year, o.month, o.day)
+    const d2 = new Midnight(year, o.month + 1, 0)
+    return d1 < d2 ? d1 : d2
   }
 
   differenceInDays(value){
@@ -37,10 +80,38 @@ export default class Midnight extends Date{
     return Math.floor((new Midnight(value) - this) / DAY)
   }
 
+  /**
+   * Returns start date of the month.
+   * @returns {Midnight}
+   * @example new Midnight('2018/05/15').startOfMonth() // => 2018/05/01
+   */
+  startOfMonth(){
+    return this.day(1)
+  }
+
+  /**
+   * Returns end date of the month.
+   * @returns {Midnight}
+   * @example new Midnight('2018/05/15').endOfMonth() // => 2018/05/31
+   */
   endOfMonth(){
     return this.nextMonth(1).day(0)
   }
 
+  /**
+   * Returns start date of the year.
+   * @returns {Midnight}
+   * @example new Midnight('2018/05/15').startOfYear() // => 2018/01/01
+   */
+  startOfYear(){
+    return this.month(1).day(1)
+  }
+
+  /**
+   * Returns end date of the year.
+   * @returns {Midnight}
+   * @example new Midnight('2018/05/15').endOfYear() // => 2018/12/31
+   */
   endOfYear(){
     return this.month(12).endOfMonth()
   }
@@ -61,16 +132,6 @@ export default class Midnight extends Date{
     return new Midnight(value1).equals(value2)
   }
 
-  month(month){
-    const o = this.toObject()
-    if(arguments.length === 0){
-      return o.month
-    }
-    const d1 = new Midnight(o.year, month, o.day)
-    const d2 = new Midnight(o.year, month + 1, 0)
-    return d1 < d2 ? d1 : d2
-  }
-
   nextDay(days = 1){
     return this.day(this.day() + days)
   }
@@ -84,11 +145,11 @@ export default class Midnight extends Date{
   }
 
   nextDayOfWeek(dayOfWeek, times = 1){
-    const dateDifference = (7 + dayOfWeek - this.getDay() - 1) % 7 + 1
+    const dateDifference = (DAYS_PER_WEEK + dayOfWeek - this.getDay() - 1) % DAYS_PER_WEEK + 1
     if(0 < times){
-      return this.nextDay(dateDifference + (times - 1) * 7)
+      return this.nextDay(dateDifference + (times - 1) * DAYS_PER_WEEK)
     }else if(times < 0){
-      return this.nextDay(dateDifference + times * 7)
+      return this.nextDay(dateDifference + times * DAYS_PER_WEEK)
     }
   }
 
@@ -120,34 +181,66 @@ export default class Midnight extends Date{
     return this.nextDayOfWeek(SATURDAY, times)
   }
 
+  /**
+   * Returns true if this is today.
+   * @returns {Boolean}
+   */
   isToday(){
     return this.equals(new Date())
   }
 
+  /**
+   * Returns true if this is sunday.
+   * @returns {Boolean}
+   */
   isSunday(){
     return this.getDay() === SUNDAY
   }
 
+  /**
+   * Returns true if this is monday.
+   * @returns {Boolean}
+   */
   isMonday(){
     return this.getDay() === MONDAY
   }
 
+  /**
+   * Returns true if this is tuesday.
+   * @returns {Boolean}
+   */
   isTuesday(){
     return this.getDay() === TUESDAY
   }
 
+  /**
+   * Returns true if this is wednesday.
+   * @returns {Boolean}
+   */
   isWednesday(){
     return this.getDay() === WEDNESDAY
   }
 
+  /**
+   * Returns true if this is thursday.
+   * @returns {Boolean}
+   */
   isThursday(){
     return this.getDay() === THURSDAY
   }
 
+  /**
+   * Returns true if this is friday.
+   * @returns {Boolean}
+   */
   isFriday(){
     return this.getDay() === FRIDAY
   }
 
+  /**
+   * Returns true if this is saturday.
+   * @returns {Boolean}
+   */
   isSaturday(){
     return this.getDay() === SATURDAY
   }
@@ -182,29 +275,11 @@ export default class Midnight extends Date{
     return this.valueOf()
   }
 
-  startOfMonth(){
-    return this.day(1)
-  }
-
-  startOfYear(){
-    return this.month(1).day(1)
-  }
-
   toObject(){
     const year = this.getFullYear()
     const month = this.getMonth() + 1
     const day = this.getDate()
     return {year, month, day}
-  }
-
-  year(year){
-    const o = this.toObject()
-    if(arguments.length === 0){
-      return o.year
-    }
-    const d1 = new Midnight(year, o.month, o.day)
-    const d2 = new Midnight(year, o.month + 1, 0)
-    return d1 < d2 ? d1 : d2
   }
 
   // private
