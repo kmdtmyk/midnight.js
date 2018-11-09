@@ -59,3 +59,7 @@ const date2 = date1.nextDay()
 // => date1: 2017/05/15 not 2017/05/16
 // => date2: 2017/05/16
 ```
+
+## License
+
+MIT
