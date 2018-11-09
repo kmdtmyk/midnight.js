@@ -7,7 +7,7 @@ export default class Midnight extends Date{
 
   constructor(){
     super(...arguments)
-    this._fixTime()
+    this._setTimeToZero()
   }
 
   nextDay(days = 1){
@@ -77,31 +77,31 @@ export default class Midnight extends Date{
 
   setHours(){
     super.setHours(...arguments)
-    this._fixTime()
+    this._setTimeToZero()
     return this.valueOf()
   }
 
   setMinutes(){
     super.setMinutes(...arguments)
-    this._fixTime()
+    this._setTimeToZero()
     return this.valueOf()
   }
 
   setSeconds(){
     super.setSeconds(...arguments)
-    this._fixTime()
+    this._setTimeToZero()
     return this.valueOf()
   }
 
   setMilliseconds(){
     super.setMilliseconds(...arguments)
-    this._fixTime()
+    this._setTimeToZero()
     return this.valueOf()
   }
 
   setTime(){
     super.setTime(...arguments)
-    this._fixTime()
+    this._setTimeToZero()
     return this.valueOf()
   }
 
@@ -130,7 +130,9 @@ export default class Midnight extends Date{
     return d1 < d2 ? d1 : d2
   }
 
-  _fixTime(){
+  // private
+
+  _setTimeToZero(){
     super.setHours(0)
     super.setMinutes(0)
     super.setSeconds(0)
