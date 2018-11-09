@@ -2,7 +2,9 @@
 
 ## Installation
 
-WIP
+```
+npm install @kmdtmyk/midnight
+```
 
 ## Usage
 
@@ -20,7 +22,7 @@ date.getMilliseconds() // => 0
 ### Methods added
 
 ```javascript
-const date = new Midnight(2017, 5 , 15) // => 2017/05/15
+const date = new Midnight(2017, 5 , 15)
 
 date.day() // => 15
 date.day(10) // => 2017/05/10
@@ -52,7 +54,7 @@ date.endOfYear() // => 2017/12/31
 These methods return new instance and don't change own state.
 
 ```javascript
-const date1 = new Midnight(2017, 5 , 15) // => 2017/05/15
+const date1 = new Midnight(2017, 5 , 15)
 const date2 = date1.nextDay()
 // => date1: 2017/05/15 not 2017/05/16
 // => date2: 2017/05/16
