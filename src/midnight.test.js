@@ -30,6 +30,14 @@ describe('constructor', () => {
     expect(new Midnight('2018-05-15')).toSameDate('2018/05/15')
   })
 
+  test('year and month', () => {
+    expect(new Midnight(2018, 0)).toSameDate('2017/12/01')
+    expect(new Midnight(2018, 1)).toSameDate('2018/01/01')
+    expect(new Midnight(2018, 5)).toSameDate('2018/05/01')
+    expect(new Midnight(2018, 12)).toSameDate('2018/12/01')
+    expect(new Midnight(2018, 13)).toSameDate('2019/01/01')
+  })
+
   test('year, month and day', () => {
     expect(new Midnight(2018, 5, 0)).toSameDate('2018/04/30')
     expect(new Midnight(2018, 5, 1)).toSameDate('2018/05/01')

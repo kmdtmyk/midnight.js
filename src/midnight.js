@@ -16,7 +16,9 @@ const DAYS_PER_WEEK = 7
 export default class Midnight extends Date{
 
   constructor(){
-    if(3 <= arguments.length){
+    if(arguments.length === 2){
+      super(arguments[0], arguments[1] - 1)
+    }else if(3 <= arguments.length){
       super(arguments[0], arguments[1] - 1, arguments[2])
     }else{
       super(...arguments)
