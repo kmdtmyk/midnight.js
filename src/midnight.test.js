@@ -51,6 +51,10 @@ describe('constructor', () => {
     expect(date.getMilliseconds()).toBe(0)
   })
 
+  test('instance of Date', () => {
+    expect(new Midnight()).toBeInstanceOf(Date)
+  })
+
 })
 
 describe('operator', () => {
