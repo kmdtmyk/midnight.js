@@ -22,18 +22,6 @@ export default class Midnight extends Date{
     this._setTimeToZero()
   }
 
-  nextDay(days = 1){
-    return this.day(this.day() + days)
-  }
-
-  nextMonth(months = 1){
-    return this.month(this.month() + months)
-  }
-
-  nextYear(years = 1){
-    return this.year(this.year() + years)
-  }
-
   day(day){
     if(arguments.length === 0){
       return this.getDate()
@@ -81,6 +69,55 @@ export default class Midnight extends Date{
     const d1 = new Midnight(o.year, month, o.day)
     const d2 = new Midnight(o.year, month + 1, 0)
     return d1 < d2 ? d1 : d2
+  }
+
+  nextDay(days = 1){
+    return this.day(this.day() + days)
+  }
+
+  nextMonth(months = 1){
+    return this.month(this.month() + months)
+  }
+
+  nextYear(years = 1){
+    return this.year(this.year() + years)
+  }
+
+  nextDayOfWeek(dayOfWeek, times = 1){
+    const dateDifference = (7 + dayOfWeek - this.getDay() - 1) % 7 + 1
+    if(0 < times){
+      return this.nextDay(dateDifference + (times - 1) * 7)
+    }else if(times < 0){
+      return this.nextDay(dateDifference + times * 7)
+    }
+  }
+
+  nextSunday(times = 1){
+    return this.nextDayOfWeek(SUNDAY, times)
+  }
+
+  nextMonday(times = 1){
+    return this.nextDayOfWeek(MONDAY, times)
+  }
+
+  nextTuesday(times = 1){
+    return this.nextDayOfWeek(TUESDAY, times)
+  }
+
+  nextWednesday(times = 1){
+    return this.nextDayOfWeek(WEDNESDAY, times)
+  }
+
+  nextThursday(times = 1){
+    return this.nextDayOfWeek(THURSDAY, times)
+  }
+
+  nextFriday(times = 1){
+    return this.nextDayOfWeek(FRIDAY, times)
+  }
+
+  nextSaturday(times = 1){
+    return this.nextDayOfWeek(SATURDAY, times)
   }
 
   isSunday(){
