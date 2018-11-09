@@ -6,7 +6,11 @@ const DAY = HOUR * 24
 export default class Midnight extends Date{
 
   constructor(){
-    super(...arguments)
+    if(3 <= arguments.length){
+      super(arguments[0], arguments[1] - 1, arguments[2])
+    }else{
+      super(...arguments)
+    }
     this._setTimeToZero()
   }
 
@@ -22,16 +26,12 @@ export default class Midnight extends Date{
     return this.year(this.year() + years)
   }
 
-  static create(year, month, day){
-    return new Midnight(year, month - 1, day)
-  }
-
   day(day){
     if(arguments.length === 0){
       return this.getDate()
     }
     const o = this.toObject()
-    return Midnight.create(o.year, o.month, day)
+    return new Midnight(o.year, o.month, day)
   }
 
   differenceInDays(value){
@@ -70,8 +70,8 @@ export default class Midnight extends Date{
     if(arguments.length === 0){
       return o.month
     }
-    const d1 = Midnight.create(o.year, month, o.day)
-    const d2 = Midnight.create(o.year, month + 1, 0)
+    const d1 = new Midnight(o.year, month, o.day)
+    const d2 = new Midnight(o.year, month + 1, 0)
     return d1 < d2 ? d1 : d2
   }
 
@@ -125,8 +125,8 @@ export default class Midnight extends Date{
     if(arguments.length === 0){
       return o.year
     }
-    const d1 = Midnight.create(year, o.month, o.day)
-    const d2 = Midnight.create(year, o.month + 1, 0)
+    const d1 = new Midnight(year, o.month, o.day)
+    const d2 = new Midnight(year, o.month + 1, 0)
     return d1 < d2 ? d1 : d2
   }
 

@@ -18,23 +18,44 @@ expect.extend({
   }
 })
 
-test('time is fixed on 00:00:00.000', () => {
-  const date = new Midnight()
-  expect(date.getHours()).toBe(0)
-  expect(date.getMinutes()).toBe(0)
-  expect(date.getSeconds()).toBe(0)
-  expect(date.getMilliseconds()).toBe(0)
+describe('constructor', () => {
+
+  test('no argument', () => {
+    const date = new Midnight()
+    expect(date).toSameDate(new Date())
+  })
+
+  test('one argument', () => {
+    expect(new Midnight('2018/05/15')).toSameDate('2018/05/15')
+    expect(new Midnight('2018-05-15')).toSameDate('2018/05/15')
+  })
+
+  test('year, month and day', () => {
+    expect(new Midnight(2018, 5, 0)).toSameDate('2018/04/30')
+    expect(new Midnight(2018, 5, 1)).toSameDate('2018/05/01')
+    expect(new Midnight(2018, 5, 31)).toSameDate('2018/05/31')
+    expect(new Midnight(2018, 5, 32)).toSameDate('2018/06/01')
+
+    expect(new Midnight(2018, 0, 15)).toSameDate('2017/12/15')
+    expect(new Midnight(2018, 1, 15)).toSameDate('2018/01/15')
+    expect(new Midnight(2018, 5, 15)).toSameDate('2018/05/15')
+    expect(new Midnight(2018, 12, 15)).toSameDate('2018/12/15')
+    expect(new Midnight(2018, 13, 15)).toSameDate('2019/01/15')
+  })
+
+  test('time is fixed on 00:00:00.000', () => {
+    const date = new Midnight()
+    expect(date.getHours()).toBe(0)
+    expect(date.getMinutes()).toBe(0)
+    expect(date.getSeconds()).toBe(0)
+    expect(date.getMilliseconds()).toBe(0)
+  })
+
 })
 
 test('instanceof Date', () => {
   const date = new Midnight()
   expect(date).toBeInstanceOf(Date)
-})
-
-test('create', () => {
-  expect(Midnight.create(2017, 5, 20)).toSameDate('2017/05/20')
-  expect(Midnight.create(2017, 5, 0)).toSameDate('2017/04/30')
-  expect(Midnight.create(2017, 5, 32)).toSameDate('2017/06/01')
 })
 
 test('differenceInDays', () => {
