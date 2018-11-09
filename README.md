@@ -11,6 +11,8 @@ npm install @kmdtmyk/midnight
 This is a subclass of Date, but the time is always 00:00:00.
 
 ```javascript
+import Midnight from '@kmdtmyk/midnight'
+
 const date = new Midnight(2017, 5 , 15) // => 2017/05/15 (month is 1-12 not 0-11)
 date instanceof Date // => true
 date.getHours() // => 0
