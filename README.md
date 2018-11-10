@@ -35,6 +35,12 @@ date.month(8) // => 2017/08/15
 date.year() // => 2017
 date.year(2020) // => 2020/05/15
 
+date.startOfMonth() // => 2017/05/01
+date.endOfMonth() // => 2017/05/31
+
+date.startOfYear() // => 2017/01/01
+date.endOfYear() // => 2017/12/31
+
 date.nextDay() // => 2017/05/16
 date.nextDay(3) // => 2017/05/18
 
@@ -44,11 +50,21 @@ date.nextMonth(3) // => 2017/08/15
 date.nextYear() // => 2018/05/15
 date.nextYear(3) // => 2020/05/15
 
-date.startOfMonth() // => 2017/05/01
-date.endOfMonth() // => 2017/05/31
+date.nextSunday() // => 2017/05/21
+date.nextMonday() // => 2017/05/22
+date.nexTuesday() // => 2017/05/16
+date.nextWednesday() // => 2017/05/17
+date.nextThursday() // => 2017/05/18
+date.nextFriday() // => 2017/05/19
+date.nextSaturday() // => 2017/05/20
 
-date.startOfYear() // => 2017/01/01
-date.endOfYear() // => 2017/12/31
+date.isSunday() // => false
+date.isMonday() // => true
+date.isuesday() // => false
+date.isWednesday() // => false
+date.isThursday() // => false
+date.isFriday() // => false
+date.isSaturday() // => false
 ```
 
 ### Immutable
