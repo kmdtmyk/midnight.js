@@ -64,7 +64,7 @@ date.nextSaturday() // => 2017/05/20
 
 date.isSunday() // => false
 date.isMonday() // => true
-date.isuesday() // => false
+date.isTuesday() // => false
 date.isWednesday() // => false
 date.isThursday() // => false
 date.isFriday() // => false
