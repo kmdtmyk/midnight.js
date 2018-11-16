@@ -1,5 +1,9 @@
 [![Build Status](https://travis-ci.org/kmdtmyk/midnight.js.svg?branch=master)](https://travis-ci.org/kmdtmyk/midnight.js)
 
+# Midnight
+
+A javascript library that deals with date only not datetime.
+
 ## Installation
 
 ```
