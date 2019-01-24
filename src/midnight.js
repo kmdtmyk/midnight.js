@@ -266,6 +266,14 @@ export default class Midnight extends Date{
     return this.getDay() === SATURDAY
   }
 
+  /**
+   * Returns true if this is valid date.
+   * @returns {Boolean}
+   */
+  isValid(){
+    return !isNaN(this.getTime())
+  }
+
   setHours(){
     super.setHours(...arguments)
     this._setTimeToZero()

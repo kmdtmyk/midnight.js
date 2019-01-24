@@ -441,6 +441,11 @@ test('isSaturday', () => {
   expect(new Midnight('2018/11/17').isSaturday()).toBe(true)
 })
 
+test('isValid', () => {
+  expect(new Midnight().isValid()).toBe(true)
+  expect(new Midnight('invalid date').isValid()).toBe(false)
+})
+
 test('setHours', () => {
   const date = new Midnight('2016/05/20')
   const value = date.valueOf()
