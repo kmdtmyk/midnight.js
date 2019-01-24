@@ -1,6 +1,6 @@
 {
   "name": "@kmdtmyk/midnight",
-  "version": "0.1.3",
+  "version": "0.2.0",
   "description": "A javascript library that deals with date only not datetime.",
   "main": "dist/midnight.js",
   "scripts": {
