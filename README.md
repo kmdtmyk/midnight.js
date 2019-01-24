@@ -69,6 +69,13 @@ date.isWednesday() // => false
 date.isThursday() // => false
 date.isFriday() // => false
 date.isSaturday() // => false
+
+date.isValid() // => true
+```
+
+```javascript
+const date = Midnight.parse('2017/05/10')
+// => 2017/05/10 not 1494342000000
 ```
 
 ### Immutable
