@@ -26,6 +26,25 @@ export default class Midnight extends Date{
     this._setTimeToZero()
   }
 
+  static parse(value){
+    if(typeof value === 'string'){
+      if(value.match(/^\d{4}[-/]\d{1,2}$/)){
+        return this.parse(`${value}-01`)
+      }else if(value.match(/^(\d{4})(\d{2})(\d{2})$/)){
+        return this.parse(`${RegExp.$1}-${RegExp.$2}-${RegExp.$3}`)
+      }else if(value.match(/^(\d{4})(\d{2})$/)){
+        return this.parse(`${RegExp.$1}-${RegExp.$2}-01`)
+      }else if(value.match(/^\d{4}$/)){
+        return this.parse(`${value}-01-01`)
+      }
+    }
+    const time = Date.parse(value)
+    if(isNaN(time)){
+      return null
+    }
+    return new Midnight(Date.parse(value))
+  }
+
   /**
    * Get day or set day.
    * @param {Number} day

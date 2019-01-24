@@ -63,6 +63,10 @@ describe('constructor', () => {
     expect(new Midnight()).toBeInstanceOf(Date)
   })
 
+  test('instance of Date', () => {
+    expect(new Midnight()).toBeInstanceOf(Date)
+  })
+
 })
 
 describe('operator', () => {
@@ -104,6 +108,36 @@ describe('operator', () => {
   })
 
 })
+
+describe('parse', () => {
+
+  test('instance of', () => {
+    expect(Midnight.parse('2018-05-15')).toBeInstanceOf(Midnight)
+    expect(Midnight.parse('2018-05-15')).toBeInstanceOf(Date)
+  })
+
+  test('valid value', () => {
+    expect(Midnight.parse('2018-05-15')).toEqual(new Midnight(2018, 5, 15))
+    expect(Midnight.parse('2018-05')).toEqual(new Midnight(2018, 5, 1))
+
+    expect(Midnight.parse('2018/05/15')).toEqual(new Midnight(2018, 5, 15))
+    expect(Midnight.parse('2018/05')).toEqual(new Midnight(2018, 5, 1))
+
+    expect(Midnight.parse('20180515')).toEqual(new Midnight(2018, 5, 15))
+    expect(Midnight.parse('201805')).toEqual(new Midnight(2018, 5, 1))
+    expect(Midnight.parse('2018')).toEqual(new Midnight(2018, 1, 1))
+  })
+
+  test('invalid value', () => {
+    expect(Midnight.parse('invalid date')).toEqual(null)
+    expect(Midnight.parse(null)).toEqual(null)
+    expect(Midnight.parse(undefined)).toEqual(null)
+    expect(Midnight.parse(NaN)).toEqual(null)
+    expect(Midnight.parse()).toEqual(null)
+  })
+
+})
+
 
 test('instanceof Date', () => {
   const date = new Midnight()
