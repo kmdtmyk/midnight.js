@@ -116,16 +116,44 @@ describe('parse', () => {
     expect(Midnight.parse('2018-05-15')).toBeInstanceOf(Date)
   })
 
-  test('valid value', () => {
-    expect(Midnight.parse('2018-05-15')).toEqual(new Midnight(2018, 5, 15))
-    expect(Midnight.parse('2018-05')).toEqual(new Midnight(2018, 5, 1))
+  test('year', () => {
+    expect(Midnight.parse('2018')).toEqual(new Midnight(2018, 1, 1))
+  })
 
-    expect(Midnight.parse('2018/05/15')).toEqual(new Midnight(2018, 5, 15))
+  test('year month', () => {
+    expect(Midnight.parse('2018-05')).toEqual(new Midnight(2018, 5, 1))
     expect(Midnight.parse('2018/05')).toEqual(new Midnight(2018, 5, 1))
+    expect(Midnight.parse('2018.05')).toEqual(new Midnight(2018, 5, 1))
+
+    expect(Midnight.parse('2018-5')).toEqual(new Midnight(2018, 5, 1))
+    expect(Midnight.parse('2018/5')).toEqual(new Midnight(2018, 5, 1))
+    expect(Midnight.parse('2018.5')).toEqual(new Midnight(2018, 5, 1))
+
+    expect(Midnight.parse('201805')).toEqual(new Midnight(2018, 5, 1))
+  })
+
+  test('month day', () => {
+    const year = Midnight.today().year()
+    expect(Midnight.parse('5/1')).toEqual(new Midnight(year, 5, 1))
+    expect(Midnight.parse('05/01')).toEqual(new Midnight(year, 5, 1))
+
+    expect(Midnight.parse('5-1')).toEqual(new Midnight(year, 5, 1))
+    expect(Midnight.parse('05-01')).toEqual(new Midnight(year, 5, 1))
+
+    expect(Midnight.parse('5.1')).toEqual(new Midnight(year, 5, 1))
+    expect(Midnight.parse('05.01')).toEqual(new Midnight(year, 5, 1))
+  })
+
+  test('year month day', () => {
+    expect(Midnight.parse('2018-05-05')).toEqual(new Midnight(2018, 5, 5))
+    expect(Midnight.parse('2018/05/05')).toEqual(new Midnight(2018, 5, 5))
+    expect(Midnight.parse('2018.05.05')).toEqual(new Midnight(2018, 5, 5))
+
+    expect(Midnight.parse('2018-5-5')).toEqual(new Midnight(2018, 5, 5))
+    expect(Midnight.parse('2018/5/5')).toEqual(new Midnight(2018, 5, 5))
+    expect(Midnight.parse('2018.5.5')).toEqual(new Midnight(2018, 5, 5))
 
     expect(Midnight.parse('20180515')).toEqual(new Midnight(2018, 5, 15))
-    expect(Midnight.parse('201805')).toEqual(new Midnight(2018, 5, 1))
-    expect(Midnight.parse('2018')).toEqual(new Midnight(2018, 1, 1))
   })
 
   test('invalid value', () => {
