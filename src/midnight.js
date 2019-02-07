@@ -173,11 +173,24 @@ export default class Midnight extends Date{
   }
 
   nextDayOfWeek(dayOfWeek, times = 1){
-    const dateDifference = (DAYS_PER_WEEK + dayOfWeek - this.getDay() - 1) % DAYS_PER_WEEK + 1
+    const day = this.getDay()
+    if(Object.is(times, 0)){
+      if(day === dayOfWeek){
+        return this.nextDay(0)
+      }
+      return this.nextDayOfWeek(dayOfWeek, 1)
+    }else if(Object.is(times, -0)){
+      if(day === dayOfWeek){
+        return this.nextDay(0)
+      }
+      return this.nextDayOfWeek(dayOfWeek, -1)
+    }
+
+    const difference = (DAYS_PER_WEEK + dayOfWeek - day - 1) % DAYS_PER_WEEK + 1
     if(0 < times){
-      return this.nextDay(dateDifference + (times - 1) * DAYS_PER_WEEK)
+      return this.nextDay(difference + (times - 1) * DAYS_PER_WEEK)
     }else if(times < 0){
-      return this.nextDay(dateDifference + times * DAYS_PER_WEEK)
+      return this.nextDay(difference + times * DAYS_PER_WEEK)
     }
   }
 

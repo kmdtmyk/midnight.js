@@ -301,6 +301,11 @@ test('nextSunday', () => {
   expect(new Midnight('2018/11/14').nextSunday(2)).toSameDate('2018/11/25')
   expect(new Midnight('2018/11/14').nextSunday(-1)).toSameDate('2018/11/11')
   expect(new Midnight('2018/11/14').nextSunday(-2)).toSameDate('2018/11/04')
+
+  expect(new Midnight('2018/11/17').nextSunday(0)).toSameDate('2018/11/18')
+  expect(new Midnight('2018/11/18').nextSunday(0)).toSameDate('2018/11/18')
+  expect(new Midnight('2018/11/18').nextSunday(-0)).toSameDate('2018/11/18')
+  expect(new Midnight('2018/11/19').nextSunday(-0)).toSameDate('2018/11/18')
 })
 
 test('nextMonday', () => {
@@ -316,6 +321,11 @@ test('nextMonday', () => {
   expect(new Midnight('2018/11/15').nextMonday(2)).toSameDate('2018/11/26')
   expect(new Midnight('2018/11/15').nextMonday(-1)).toSameDate('2018/11/12')
   expect(new Midnight('2018/11/15').nextMonday(-2)).toSameDate('2018/11/05')
+
+  expect(new Midnight('2018/11/18').nextMonday(0)).toSameDate('2018/11/19')
+  expect(new Midnight('2018/11/19').nextMonday(0)).toSameDate('2018/11/19')
+  expect(new Midnight('2018/11/19').nextMonday(-0)).toSameDate('2018/11/19')
+  expect(new Midnight('2018/11/20').nextMonday(-0)).toSameDate('2018/11/19')
 })
 
 test('nextTuesday', () => {
@@ -331,6 +341,11 @@ test('nextTuesday', () => {
   expect(new Midnight('2018/11/16').nextTuesday(2)).toSameDate('2018/11/27')
   expect(new Midnight('2018/11/16').nextTuesday(-1)).toSameDate('2018/11/13')
   expect(new Midnight('2018/11/16').nextTuesday(-2)).toSameDate('2018/11/06')
+
+  expect(new Midnight('2018/11/19').nextTuesday(0)).toSameDate('2018/11/20')
+  expect(new Midnight('2018/11/20').nextTuesday(0)).toSameDate('2018/11/20')
+  expect(new Midnight('2018/11/20').nextTuesday(-0)).toSameDate('2018/11/20')
+  expect(new Midnight('2018/11/21').nextTuesday(-0)).toSameDate('2018/11/20')
 })
 
 test('nextWednesday', () => {
@@ -346,6 +361,11 @@ test('nextWednesday', () => {
   expect(new Midnight('2018/11/17').nextWednesday(2)).toSameDate('2018/11/28')
   expect(new Midnight('2018/11/17').nextWednesday(-1)).toSameDate('2018/11/14')
   expect(new Midnight('2018/11/17').nextWednesday(-2)).toSameDate('2018/11/07')
+
+  expect(new Midnight('2018/11/20').nextWednesday(0)).toSameDate('2018/11/21')
+  expect(new Midnight('2018/11/21').nextWednesday(0)).toSameDate('2018/11/21')
+  expect(new Midnight('2018/11/21').nextWednesday(-0)).toSameDate('2018/11/21')
+  expect(new Midnight('2018/11/22').nextWednesday(-0)).toSameDate('2018/11/21')
 })
 
 test('nextThursday', () => {
@@ -361,6 +381,11 @@ test('nextThursday', () => {
   expect(new Midnight('2018/11/18').nextThursday(2)).toSameDate('2018/11/29')
   expect(new Midnight('2018/11/18').nextThursday(-1)).toSameDate('2018/11/15')
   expect(new Midnight('2018/11/18').nextThursday(-2)).toSameDate('2018/11/08')
+
+  expect(new Midnight('2018/11/21').nextThursday(0)).toSameDate('2018/11/22')
+  expect(new Midnight('2018/11/22').nextThursday(0)).toSameDate('2018/11/22')
+  expect(new Midnight('2018/11/22').nextThursday(-0)).toSameDate('2018/11/22')
+  expect(new Midnight('2018/11/23').nextThursday(-0)).toSameDate('2018/11/22')
 })
 
 test('nextFriday', () => {
@@ -376,6 +401,11 @@ test('nextFriday', () => {
   expect(new Midnight('2018/11/19').nextFriday(2)).toSameDate('2018/11/30')
   expect(new Midnight('2018/11/19').nextFriday(-1)).toSameDate('2018/11/16')
   expect(new Midnight('2018/11/19').nextFriday(-2)).toSameDate('2018/11/09')
+
+  expect(new Midnight('2018/11/22').nextFriday(0)).toSameDate('2018/11/23')
+  expect(new Midnight('2018/11/23').nextFriday(0)).toSameDate('2018/11/23')
+  expect(new Midnight('2018/11/23').nextFriday(-0)).toSameDate('2018/11/23')
+  expect(new Midnight('2018/11/24').nextFriday(-0)).toSameDate('2018/11/23')
 })
 
 test('nextSaturday', () => {
@@ -391,6 +421,11 @@ test('nextSaturday', () => {
   expect(new Midnight('2018/11/20').nextSaturday(2)).toSameDate('2018/12/01')
   expect(new Midnight('2018/11/20').nextSaturday(-1)).toSameDate('2018/11/17')
   expect(new Midnight('2018/11/20').nextSaturday(-2)).toSameDate('2018/11/10')
+
+  expect(new Midnight('2018/11/23').nextSaturday(0)).toSameDate('2018/11/24')
+  expect(new Midnight('2018/11/24').nextSaturday(0)).toSameDate('2018/11/24')
+  expect(new Midnight('2018/11/24').nextSaturday(-0)).toSameDate('2018/11/24')
+  expect(new Midnight('2018/11/25').nextSaturday(-0)).toSameDate('2018/11/24')
 })
 
 test('isToday', () => {
