@@ -26,6 +26,10 @@ export default class Midnight extends Date{
     this._setTimeToZero()
   }
 
+  static equals(value1, value2){
+    return new Midnight(value1).equals(value2)
+  }
+
   static parse(value){
     if(typeof value === 'string'){
       if(value.match(/^\d{4}[-/]\d{1,2}$/)){
@@ -43,6 +47,10 @@ export default class Midnight extends Date{
       return null
     }
     return new Midnight(Date.parse(value))
+  }
+
+  static today(){
+    return new Midnight()
   }
 
   /**
@@ -147,10 +155,6 @@ export default class Midnight extends Date{
       this.getMonth() === date.getMonth() &&
       this.getDate() === date.getDate()
     )
-  }
-
-  static equals(value1, value2){
-    return new Midnight(value1).equals(value2)
   }
 
   nextDay(days = 1){
