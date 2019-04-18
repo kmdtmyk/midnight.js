@@ -148,6 +148,26 @@ export default class Midnight extends Date{
     return this.month(12).endOfMonth()
   }
 
+  /**
+   * Returns start date of the decade.
+   * @returns {Midnight}
+   * @example new Midnight('2018/05/15').startOfDecade() // => 2010/01/01
+   */
+  startOfDecade(){
+    const year = Math.floor(this.year() / 10) * 10
+    return new Midnight(year, 1, 1)
+  }
+
+  /**
+   * Returns end date of the decade.
+   * @returns {Midnight}
+   * @example new Midnight('2018/05/15').endOfDecade() // => 2019/12/31
+   */
+  endOfDecade(){
+    const year = Math.floor(this.year() / 10) * 10 + 9
+    return new Midnight(year, 12, 31)
+  }
+
   equals(value){
     if(!value){
       return false

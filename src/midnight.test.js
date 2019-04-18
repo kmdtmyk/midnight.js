@@ -201,6 +201,14 @@ test('endOfYear', () => {
   expect(new Midnight('2018/01/31').endOfYear()).toSameDate('2018/12/31')
 })
 
+test('endOfDecade', () => {
+  expect(new Midnight('2009/12/31').endOfDecade()).toSameDate('2009/12/31')
+  expect(new Midnight('2010/01/01').endOfDecade()).toSameDate('2019/12/31')
+  expect(new Midnight('2015/05/15').endOfDecade()).toSameDate('2019/12/31')
+  expect(new Midnight('2019/12/31').endOfDecade()).toSameDate('2019/12/31')
+  expect(new Midnight('2020/01/01').endOfDecade()).toSameDate('2029/12/31')
+})
+
 test('equals', () => {
   const date = new Midnight('2017/05/20')
   expect(date.equals(new Date('2017/05/20'))).toBe(true)
@@ -560,6 +568,14 @@ test('startOfYear', () => {
   expect(new Midnight('2017/12/31').startOfYear()).toSameDate('2017/01/01')
 })
 
+test('startOfDecade', () => {
+  expect(new Midnight('2009/12/31').startOfDecade()).toSameDate('2000/01/01')
+  expect(new Midnight('2010/01/01').startOfDecade()).toSameDate('2010/01/01')
+  expect(new Midnight('2015/05/15').startOfDecade()).toSameDate('2010/01/01')
+  expect(new Midnight('2019/12/31').startOfDecade()).toSameDate('2010/01/01')
+  expect(new Midnight('2020/01/01').startOfDecade()).toSameDate('2020/01/01')
+})
+
 test('toObject', () => {
   const date = new Midnight('2017/05/20')
   expect(date.toObject()).toEqual({year: 2017, month: 5, day: 20})
@@ -594,8 +610,12 @@ test('immutable', () => {
   expect(date).toSameDate(value)
   date.startOfYear()
   expect(date).toSameDate(value)
+  date.startOfDecade()
+  expect(date).toSameDate(value)
   date.endOfMonth()
   expect(date).toSameDate(value)
   date.endOfYear()
+  expect(date).toSameDate(value)
+  date.endOfDecade()
   expect(date).toSameDate(value)
 })

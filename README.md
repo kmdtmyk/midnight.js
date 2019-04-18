@@ -45,6 +45,9 @@ date.endOfMonth() // => 2017/05/31
 date.startOfYear() // => 2017/01/01
 date.endOfYear() // => 2017/12/31
 
+date.startOfDecade() // => 2010/01/01
+date.endOfDecade() // => 2019/12/31
+
 date.nextDay() // => 2017/05/16
 date.nextDay(3) // => 2017/05/18
 
