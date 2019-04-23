@@ -44,6 +44,11 @@ describe('constructor', () => {
     expect(new Midnight('2018')).toSameDate('2018-01-01')
   })
 
+  test('one argument (date)', () => {
+    const date = new Date('2018-05-15')
+    expect(new Midnight(date)).toSameDate('2018-05-15')
+  })
+
   test('year and month', () => {
     expect(new Midnight(2018, 0)).toSameDate('2017-12-01')
     expect(new Midnight(2018, 1)).toSameDate('2018-01-01')
