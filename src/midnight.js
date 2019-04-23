@@ -61,10 +61,7 @@ export default class Midnight extends Date{
       return null
     }
     const date = new Date(value)
-    const year = date.getFullYear()
-    const month = date.getMonth() + 1
-    const day = date.getDate()
-    return new Midnight(year, month, day)
+    return new Midnight(date)
   }
 
   static today(){
