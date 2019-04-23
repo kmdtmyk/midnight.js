@@ -25,7 +25,7 @@ date.getSeconds() // => 0
 date.getMilliseconds() // => 0
 ```
 
-### Methods added
+## Methods added
 
 ```javascript
 const date = new Midnight(2017, 5 , 15)
@@ -81,7 +81,7 @@ const date = Midnight.parse('2017/05/10')
 // => 2017/05/10 not 1494342000000
 ```
 
-### Immutable
+## Immutable
 
 These methods return new instance and don't change own state.
 
