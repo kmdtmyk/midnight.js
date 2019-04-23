@@ -20,10 +20,21 @@ export default class Midnight extends Date{
       super(arguments[0], arguments[1] - 1)
     }else if(3 <= arguments.length){
       super(arguments[0], arguments[1] - 1, arguments[2])
+    }else if(typeof arguments[0] === 'string'){
+      super(arguments[0].replace(/\//g, '-'))
     }else{
       super(...arguments)
     }
     this._setTimeToZero()
+
+    if(typeof arguments[0] === 'number'){
+      // detect 0 to 99 → 1900 to 1999
+      const converted = 1800 < this.getFullYear() - arguments[0]
+      if(arguments.length === 1 || converted){
+        this.setFullYear(arguments[0])
+      }
+    }
+
   }
 
   static equals(value1, value2){
@@ -49,7 +60,11 @@ export default class Midnight extends Date{
     if(isNaN(time)){
       return null
     }
-    return new Midnight(Date.parse(value))
+    const date = new Date(value)
+    const year = date.getFullYear()
+    const month = date.getMonth() + 1
+    const day = date.getDate()
+    return new Midnight(year, month, day)
   }
 
   static today(){

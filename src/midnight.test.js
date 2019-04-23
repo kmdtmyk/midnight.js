@@ -25,30 +25,44 @@ describe('constructor', () => {
     expect(date).toSameDate(new Date())
   })
 
-  test('one argument', () => {
-    expect(new Midnight('2018/05/15')).toSameDate('2018/05/15')
-    expect(new Midnight('2018-05-15')).toSameDate('2018/05/15')
+  test('one argument (number)', () => {
+    expect(new Midnight(1)).toSameDate('0001-01-01')
+    expect(new Midnight(99)).toSameDate('0099-01-01')
+    expect(new Midnight(100)).toSameDate('0100-01-01')
+    expect(new Midnight(1900)).toSameDate('1900-01-01')
+    expect(new Midnight(2000)).toSameDate('2000-01-01')
+    expect(new Midnight(2100)).toSameDate('2100-01-01')
+  })
+
+  test('one argument (string)', () => {
+    expect(new Midnight('2018/05/15')).toSameDate('2018-05-15')
+    expect(new Midnight('2018-05-15')).toSameDate('2018-05-15')
+
+    expect(new Midnight('2018/05')).toSameDate('2018-05-01')
+    expect(new Midnight('2018-05')).toSameDate('2018-05-01')
+
+    expect(new Midnight('2018')).toSameDate('2018-01-01')
   })
 
   test('year and month', () => {
-    expect(new Midnight(2018, 0)).toSameDate('2017/12/01')
-    expect(new Midnight(2018, 1)).toSameDate('2018/01/01')
-    expect(new Midnight(2018, 5)).toSameDate('2018/05/01')
-    expect(new Midnight(2018, 12)).toSameDate('2018/12/01')
-    expect(new Midnight(2018, 13)).toSameDate('2019/01/01')
+    expect(new Midnight(2018, 0)).toSameDate('2017-12-01')
+    expect(new Midnight(2018, 1)).toSameDate('2018-01-01')
+    expect(new Midnight(2018, 5)).toSameDate('2018-05-01')
+    expect(new Midnight(2018, 12)).toSameDate('2018-12-01')
+    expect(new Midnight(2018, 13)).toSameDate('2019-01-01')
   })
 
   test('year, month and day', () => {
-    expect(new Midnight(2018, 5, 0)).toSameDate('2018/04/30')
-    expect(new Midnight(2018, 5, 1)).toSameDate('2018/05/01')
-    expect(new Midnight(2018, 5, 31)).toSameDate('2018/05/31')
-    expect(new Midnight(2018, 5, 32)).toSameDate('2018/06/01')
+    expect(new Midnight(2018, 5, 0)).toSameDate('2018-04-30')
+    expect(new Midnight(2018, 5, 1)).toSameDate('2018-05-01')
+    expect(new Midnight(2018, 5, 31)).toSameDate('2018-05-31')
+    expect(new Midnight(2018, 5, 32)).toSameDate('2018-06-01')
 
-    expect(new Midnight(2018, 0, 15)).toSameDate('2017/12/15')
-    expect(new Midnight(2018, 1, 15)).toSameDate('2018/01/15')
-    expect(new Midnight(2018, 5, 15)).toSameDate('2018/05/15')
-    expect(new Midnight(2018, 12, 15)).toSameDate('2018/12/15')
-    expect(new Midnight(2018, 13, 15)).toSameDate('2019/01/15')
+    expect(new Midnight(2018, 0, 15)).toSameDate('2017-12-15')
+    expect(new Midnight(2018, 1, 15)).toSameDate('2018-01-15')
+    expect(new Midnight(2018, 5, 15)).toSameDate('2018-05-15')
+    expect(new Midnight(2018, 12, 15)).toSameDate('2018-12-15')
+    expect(new Midnight(2018, 13, 15)).toSameDate('2019-01-15')
   })
 
   test('time is fixed on 00:00:00.000', () => {
@@ -65,6 +79,20 @@ describe('constructor', () => {
 
   test('instance of Date', () => {
     expect(new Midnight()).toBeInstanceOf(Date)
+  })
+
+  test('1 century', () => {
+    expect(new Midnight(1, 5)).toSameDate('0001-05-01')
+    expect(new Midnight(99, 5)).toSameDate('0099-05-01')
+    expect(new Midnight(100, 5)).toSameDate('0100-05-01')
+
+    expect(new Midnight(1, 5, 15)).toSameDate('0001-05-15')
+    expect(new Midnight(99, 5, 15)).toSameDate('0099-05-15')
+    expect(new Midnight(100, 5, 15)).toSameDate('0100-05-15')
+
+    expect(new Midnight('0001/05/15')).toSameDate('0001-05-15')
+    expect(new Midnight('0099/05/15')).toSameDate('0099-05-15')
+    expect(new Midnight('0100/05/15')).toSameDate('0100-05-15')
   })
 
 })
