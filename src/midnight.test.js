@@ -209,6 +209,23 @@ describe('parse', () => {
     expect(Midnight.parse('20180515')).toEqual(new Midnight(2018, 5, 15))
   })
 
+  test('before 100 year', () => {
+    expect(Midnight.parse('1-1-1')).toEqual(new Midnight(1, 1, 1))
+    expect(Midnight.parse('1/1/1')).toEqual(new Midnight(1, 1, 1))
+    expect(Midnight.parse('1.1.1')).toEqual(new Midnight(1, 1, 1))
+    expect(Midnight.parse('00010101')).toEqual(new Midnight(1, 1, 1))
+
+    expect(Midnight.parse('99-1-1')).toEqual(new Midnight(99, 1, 1))
+    expect(Midnight.parse('99/1/1')).toEqual(new Midnight(99, 1, 1))
+    expect(Midnight.parse('99.1.1')).toEqual(new Midnight(99, 1, 1))
+    expect(Midnight.parse('00990101')).toEqual(new Midnight(99, 1, 1))
+
+    expect(Midnight.parse('100-1-1')).toEqual(new Midnight(100, 1, 1))
+    expect(Midnight.parse('100/1/1')).toEqual(new Midnight(100, 1, 1))
+    expect(Midnight.parse('100.1.1')).toEqual(new Midnight(100, 1, 1))
+    expect(Midnight.parse('01000101')).toEqual(new Midnight(100, 1, 1))
+  })
+
   test('invalid value', () => {
     expect(Midnight.parse('invalid date')).toEqual(null)
     expect(Midnight.parse(null)).toEqual(null)

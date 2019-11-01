@@ -45,18 +45,7 @@ export default class Midnight extends Date{
 
   static parse(value){
     if(typeof value === 'string'){
-      if(value.match(/^\d{4}[-/.]\d{1,2}$/)){
-        return this.parse(`${value}-01`)
-      }else if(value.match(/^(\d{1,2})[-/.](\d{1,2})$/)){
-        const year = Midnight.today().year()
-        return this.parse(`${year}-${RegExp.$1}-${RegExp.$2}`)
-      }else if(value.match(/^(\d{4})(\d{2})(\d{2})$/)){
-        return this.parse(`${RegExp.$1}-${RegExp.$2}-${RegExp.$3}`)
-      }else if(value.match(/^(\d{4})(\d{2})$/)){
-        return this.parse(`${RegExp.$1}-${RegExp.$2}-01`)
-      }else if(value.match(/^\d{4}$/)){
-        return this.parse(`${value}-01-01`)
-      }
+      value = formatDateText(value)
     }
     const time = Date.parse(value)
     if(isNaN(time)){
@@ -375,4 +364,44 @@ export default class Midnight extends Date{
     super.setMilliseconds(0)
   }
 
+}
+
+/**
+ * return text as yyyy-mm-dd format
+ * @param {String} text
+ */
+function formatDateText(value){
+  if(typeof value !== 'string'){
+    return null
+  }
+
+  if(value.match(/^(\d+)[-/.](\d+)[-/.](\d+)$/)){
+    return createDateText(RegExp.$1, RegExp.$2, RegExp.$3)
+  }
+
+  if(value.match(/^(\d{4})[-/.](\d{1,2})$/)){
+    return createDateText(RegExp.$1, RegExp.$2, 1)
+  }
+
+  if(value.match(/^(\d{1,2})[-/.](\d{1,2})$/)){
+    return createDateText(Midnight.today().year(), RegExp.$1, RegExp.$2)
+  }
+
+  if(value.match(/^(\d{4})(\d{2})(\d{2})$/)){
+    return createDateText(RegExp.$1, RegExp.$2, RegExp.$3)
+  }
+
+  if(value.match(/^(\d{4})(\d{2})$/)){
+    return createDateText(RegExp.$1, RegExp.$2, 1)
+  }
+
+  if(value.match(/^\d{4}$/)){
+    return createDateText(value, 1, 1)
+  }
+
+  return value
+}
+
+function createDateText(year, month, day){
+  return `${year.toString().padStart(4, '0')}-${month.toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`
 }
