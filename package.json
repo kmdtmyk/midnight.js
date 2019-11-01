@@ -7,7 +7,7 @@
     "start": "npm test -- --watch",
     "test": "jest",
     "build": "webpack",
-    "prepublish": "npm run build"
+    "prepare": "npm run build"
   },
   "repository": {
     "type": "git",
