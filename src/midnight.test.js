@@ -15,7 +15,20 @@ expect.extend({
         }
       }
     }
-  }
+  },
+  toInvalidDate(received){
+    const pass = received instanceof Date && received.toString() === 'Invalid Date'
+    return {
+      pass,
+      message(){
+        if(pass){
+          return `${received} is Invalid Date`
+        }else{
+          return `${received} is not Invalid Date`
+        }
+      }
+    }
+  },
 })
 
 describe('constructor', () => {
@@ -98,6 +111,13 @@ describe('constructor', () => {
     expect(new Midnight('0001/05/15')).toSameDate('0001-05-15')
     expect(new Midnight('0099/05/15')).toSameDate('0099-05-15')
     expect(new Midnight('0100/05/15')).toSameDate('0100-05-15')
+  })
+
+  test('invalid date', () => {
+    expect(new Midnight(null)).toInvalidDate()
+    expect(new Midnight(undefined)).toInvalidDate()
+    expect(new Midnight(NaN)).toInvalidDate()
+    expect(new Midnight('invalid date')).toInvalidDate()
   })
 
 })

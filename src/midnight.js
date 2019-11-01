@@ -22,6 +22,8 @@ export default class Midnight extends Date{
       super(arguments[0], arguments[1] - 1, arguments[2])
     }else if(typeof arguments[0] === 'string'){
       super(arguments[0].replace(/\//g, '-'))
+    }else if(arguments[0] === null){
+      super(undefined)
     }else{
       super(...arguments)
     }
