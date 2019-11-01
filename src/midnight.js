@@ -120,10 +120,11 @@ export default class Midnight extends Date{
   }
 
   differenceInDays(value){
-    if(!value){
-      return NaN
+    const date = new Midnight(value)
+    if(date.isValid() === false){
+      return null
     }
-    return Math.floor((new Midnight(value) - this) / DAY)
+    return Math.floor((date - this) / DAY)
   }
 
   /**

@@ -233,9 +233,10 @@ test('differenceInDays', () => {
   expect(date.differenceInDays(new Date('2017/04/10'))).toBe(-42)
   expect(date.differenceInDays(new Date('2017/05/22'))).toBe(0)
   expect(date.differenceInDays(new Date('2017/06/10'))).toBe(19)
-  expect(date.differenceInDays(null)).toBe(NaN)
-  expect(date.differenceInDays(undefined)).toBe(NaN)
-  expect(date.differenceInDays('invalid date')).toBe(NaN)
+
+  expect(date.differenceInDays(null)).toBe(null)
+  expect(date.differenceInDays(undefined)).toBe(null)
+  expect(date.differenceInDays('invalid date')).toBe(null)
 })
 
 test('endOfMonth', () => {
