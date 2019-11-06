@@ -95,10 +95,6 @@ describe('constructor', () => {
     expect(new Midnight()).toBeInstanceOf(Date)
   })
 
-  test('instance of Date', () => {
-    expect(new Midnight()).toBeInstanceOf(Date)
-  })
-
   test('1 century', () => {
     expect(new Midnight(1, 5)).toSameDate('0001-05-01')
     expect(new Midnight(99, 5)).toSameDate('0099-05-01')
