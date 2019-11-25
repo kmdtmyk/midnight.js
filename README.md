@@ -1,4 +1,5 @@
-[![Build Status](https://travis-ci.org/kmdtmyk/midnight.js.svg?branch=master)](https://travis-ci.org/kmdtmyk/midnight.js)
+[![Publish](https://github.com/kmdtmyk/midnight.js/workflows/Publish/badge.svg)](https://github.com/kmdtmyk/midnight.js/actions)
+[![Test](https://github.com/kmdtmyk/midnight.js/workflows/Test/badge.svg)](https://github.com/kmdtmyk/midnight.js/actions)
 
 # Midnight
 
