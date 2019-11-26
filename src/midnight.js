@@ -24,6 +24,8 @@ export default class Midnight extends Date{
       super(arguments[0].replace(/\//g, '-'))
     }else if(arguments[0] === null){
       super(undefined)
+    }else if(arguments.length === 0){
+      super(Date.now())
     }else{
       super(...arguments)
     }
@@ -251,7 +253,7 @@ export default class Midnight extends Date{
    * @returns {Boolean}
    */
   isToday(){
-    return this.equals(new Date())
+    return this.equals(Midnight.today())
   }
 
   /**

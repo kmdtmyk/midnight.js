@@ -1,4 +1,5 @@
 import Midnight from './midnight'
+import Timecop from './timecop'
 
 expect.extend({
   toSameDate(received, argument){
@@ -114,6 +115,13 @@ describe('constructor', () => {
     expect(new Midnight(undefined)).toInvalidDate()
     expect(new Midnight(NaN)).toInvalidDate()
     expect(new Midnight('invalid date')).toInvalidDate()
+  })
+
+  test('travel', () => {
+    Timecop.freeze()
+    Timecop.travel(new Date('2015-01-23'))
+    expect(new Midnight()).toSameDate('2015-01-23')
+    Timecop.return()
   })
 
 })
@@ -502,10 +510,21 @@ test('nextSaturday', () => {
   expect(new Midnight(2018, 11, 25).nextSaturday(-0)).toSameDate('2018-11-24')
 })
 
-test('isToday', () => {
-  expect(new Midnight().isToday()).toBe(true)
-  expect(new Midnight().nextDay(-1).isToday()).toBe(false)
-  expect(new Midnight().nextDay(1).isToday()).toBe(false)
+describe('isToday', () => {
+
+  test('today', () => {
+    expect(new Midnight().isToday()).toBe(true)
+    expect(new Midnight().nextDay(-1).isToday()).toBe(false)
+    expect(new Midnight().nextDay(1).isToday()).toBe(false)
+  })
+
+  test('travel', () => {
+    Timecop.freeze()
+    Timecop.travel(new Date('2015-01-23'))
+    expect(new Midnight().isToday()).toBe(true)
+    Timecop.return()
+  })
+
 })
 
 test('isSunday', () => {
