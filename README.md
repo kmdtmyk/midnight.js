@@ -78,8 +78,8 @@ date.isValid() // => true
 ```
 
 ```javascript
-const date = Midnight.parse('2017/05/10')
-// => 2017/05/10 not 1494342000000
+Midnight.parse('2017/05/10') // => 2017/05/10 not 1494342000000
+Midnight.parse('invalid date') // => null not NaN
 ```
 
 ## Immutable
