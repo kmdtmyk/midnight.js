@@ -45,9 +45,9 @@ export default class Midnight extends Date{
     return new Midnight(value1).equals(value2)
   }
 
-  static parse(value){
+  static parse(value, complete = true){
     if(typeof value === 'string'){
-      value = formatDateText(value)
+      value = formatDateText(value, complete)
     }
     const time = Date.parse(value)
     if(isNaN(time)){
@@ -372,13 +372,17 @@ export default class Midnight extends Date{
  * return text as yyyy-mm-dd format
  * @param {String} text
  */
-function formatDateText(value){
+function formatDateText(value, complete = true){
   if(typeof value !== 'string'){
     return null
   }
 
   if(value.match(/^(\d+)[-/.](\d+)[-/.](\d+)$/)){
-    return createDateText(RegExp.$1, RegExp.$2, RegExp.$3)
+    if(complete === true){
+      return createDateText(completeYear(RegExp.$1), RegExp.$2, RegExp.$3)
+    }else{
+      return createDateText(RegExp.$1, RegExp.$2, RegExp.$3)
+    }
   }
 
   if(value.match(/^(\d{4})[-/.](\d{1,2})$/)){
@@ -402,6 +406,23 @@ function formatDateText(value){
   }
 
   return value
+}
+
+function completeYear(year){
+  year = parseInt(year)
+
+  if(100 <= year){
+    return year
+  }
+
+  const currentYear = Midnight.today().year()
+
+  year = year + (currentYear - currentYear % 100)
+  if(currentYear + 50 <= year){
+    year = year - 100
+  }
+
+  return year
 }
 
 function createDateText(year, month, day){

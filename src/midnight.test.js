@@ -214,20 +214,37 @@ describe('parse', () => {
   })
 
   test('before 100 year', () => {
-    expect(Midnight.parse('1-1-1')).toSameDate('0001-01-01')
-    expect(Midnight.parse('1/1/1')).toSameDate('0001-01-01')
-    expect(Midnight.parse('1.1.1')).toSameDate('0001-01-01')
     expect(Midnight.parse('00010101')).toSameDate('0001-01-01')
-
-    expect(Midnight.parse('99-1-1')).toSameDate('0099-01-01')
-    expect(Midnight.parse('99/1/1')).toSameDate('0099-01-01')
-    expect(Midnight.parse('99.1.1')).toSameDate('0099-01-01')
     expect(Midnight.parse('00990101')).toSameDate('0099-01-01')
-
-    expect(Midnight.parse('100-1-1')).toSameDate('0100-01-01')
-    expect(Midnight.parse('100/1/1')).toSameDate('0100-01-01')
-    expect(Midnight.parse('100.1.1')).toSameDate('0100-01-01')
     expect(Midnight.parse('01000101')).toSameDate('0100-01-01')
+  })
+
+  test('complete: true', () => {
+    Timecop.freeze()
+    Timecop.travel(new Date('2019-01-01'))
+
+    expect(Midnight.parse('1-1-1', true)).toSameDate('2001-01-01')
+    expect(Midnight.parse('1/1/1', true)).toSameDate('2001-01-01')
+    expect(Midnight.parse('1.1.1', true)).toSameDate('2001-01-01')
+
+    expect(Midnight.parse('68.1.1', true)).toSameDate('2068-01-01')
+    expect(Midnight.parse('69.1.1', true)).toSameDate('1969-01-01')
+
+    expect(Midnight.parse('99-1-1', true)).toSameDate('1999-01-01')
+    expect(Midnight.parse('99/1/1', true)).toSameDate('1999-01-01')
+    expect(Midnight.parse('99.1.1', true)).toSameDate('1999-01-01')
+
+    Timecop.return()
+  })
+
+  test('complete: false', () => {
+    expect(Midnight.parse('1-1-1', false)).toSameDate('0001-01-01')
+    expect(Midnight.parse('1/1/1', false)).toSameDate('0001-01-01')
+    expect(Midnight.parse('1.1.1', false)).toSameDate('0001-01-01')
+
+    expect(Midnight.parse('99-1-1', false)).toSameDate('0099-01-01')
+    expect(Midnight.parse('99/1/1', false)).toSameDate('0099-01-01')
+    expect(Midnight.parse('99.1.1', false)).toSameDate('0099-01-01')
   })
 
   test('invalid value', () => {
