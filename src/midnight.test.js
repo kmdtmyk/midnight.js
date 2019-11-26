@@ -174,60 +174,60 @@ describe('parse', () => {
   })
 
   test('year', () => {
-    expect(Midnight.parse('2018')).toEqual(new Midnight(2018, 1, 1))
+    expect(Midnight.parse('2018')).toSameDate('2018-01-01')
   })
 
   test('year month', () => {
-    expect(Midnight.parse('2018-05')).toEqual(new Midnight(2018, 5, 1))
-    expect(Midnight.parse('2018/05')).toEqual(new Midnight(2018, 5, 1))
-    expect(Midnight.parse('2018.05')).toEqual(new Midnight(2018, 5, 1))
+    expect(Midnight.parse('2018-05')).toSameDate('2018-05-01')
+    expect(Midnight.parse('2018/05')).toSameDate('2018-05-01')
+    expect(Midnight.parse('2018.05')).toSameDate('2018-05-01')
 
-    expect(Midnight.parse('2018-5')).toEqual(new Midnight(2018, 5, 1))
-    expect(Midnight.parse('2018/5')).toEqual(new Midnight(2018, 5, 1))
-    expect(Midnight.parse('2018.5')).toEqual(new Midnight(2018, 5, 1))
+    expect(Midnight.parse('2018-5')).toSameDate('2018-05-01')
+    expect(Midnight.parse('2018/5')).toSameDate('2018-05-01')
+    expect(Midnight.parse('2018.5')).toSameDate('2018-05-01')
 
-    expect(Midnight.parse('201805')).toEqual(new Midnight(2018, 5, 1))
+    expect(Midnight.parse('201805')).toSameDate('2018-05-01')
   })
 
   test('month day', () => {
     const year = Midnight.today().year()
-    expect(Midnight.parse('5/1')).toEqual(new Midnight(year, 5, 1))
-    expect(Midnight.parse('05/01')).toEqual(new Midnight(year, 5, 1))
+    expect(Midnight.parse('5/1')).toSameDate(`${year}-05-01`)
+    expect(Midnight.parse('05/01')).toSameDate(`${year}-05-01`)
 
-    expect(Midnight.parse('5-1')).toEqual(new Midnight(year, 5, 1))
-    expect(Midnight.parse('05-01')).toEqual(new Midnight(year, 5, 1))
+    expect(Midnight.parse('5-1')).toSameDate(`${year}-05-01`)
+    expect(Midnight.parse('05-01')).toSameDate(`${year}-05-01`)
 
-    expect(Midnight.parse('5.1')).toEqual(new Midnight(year, 5, 1))
-    expect(Midnight.parse('05.01')).toEqual(new Midnight(year, 5, 1))
+    expect(Midnight.parse('5.1')).toSameDate(`${year}-05-01`)
+    expect(Midnight.parse('05.01')).toSameDate(`${year}-05-01`)
   })
 
   test('year month day', () => {
-    expect(Midnight.parse('2018-05-05')).toEqual(new Midnight(2018, 5, 5))
-    expect(Midnight.parse('2018/05/05')).toEqual(new Midnight(2018, 5, 5))
-    expect(Midnight.parse('2018.05.05')).toEqual(new Midnight(2018, 5, 5))
+    expect(Midnight.parse('2018-05-05')).toSameDate('2018-05-05')
+    expect(Midnight.parse('2018/05/05')).toSameDate('2018-05-05')
+    expect(Midnight.parse('2018.05.05')).toSameDate('2018-05-05')
 
-    expect(Midnight.parse('2018-5-5')).toEqual(new Midnight(2018, 5, 5))
-    expect(Midnight.parse('2018/5/5')).toEqual(new Midnight(2018, 5, 5))
-    expect(Midnight.parse('2018.5.5')).toEqual(new Midnight(2018, 5, 5))
+    expect(Midnight.parse('2018-5-5')).toSameDate('2018-05-05')
+    expect(Midnight.parse('2018/5/5')).toSameDate('2018-05-05')
+    expect(Midnight.parse('2018.5.5')).toSameDate('2018-05-05')
 
-    expect(Midnight.parse('20180515')).toEqual(new Midnight(2018, 5, 15))
+    expect(Midnight.parse('20180515')).toSameDate('2018-05-15')
   })
 
   test('before 100 year', () => {
-    expect(Midnight.parse('1-1-1')).toEqual(new Midnight(1, 1, 1))
-    expect(Midnight.parse('1/1/1')).toEqual(new Midnight(1, 1, 1))
-    expect(Midnight.parse('1.1.1')).toEqual(new Midnight(1, 1, 1))
-    expect(Midnight.parse('00010101')).toEqual(new Midnight(1, 1, 1))
+    expect(Midnight.parse('1-1-1')).toSameDate('0001-01-01')
+    expect(Midnight.parse('1/1/1')).toSameDate('0001-01-01')
+    expect(Midnight.parse('1.1.1')).toSameDate('0001-01-01')
+    expect(Midnight.parse('00010101')).toSameDate('0001-01-01')
 
-    expect(Midnight.parse('99-1-1')).toEqual(new Midnight(99, 1, 1))
-    expect(Midnight.parse('99/1/1')).toEqual(new Midnight(99, 1, 1))
-    expect(Midnight.parse('99.1.1')).toEqual(new Midnight(99, 1, 1))
-    expect(Midnight.parse('00990101')).toEqual(new Midnight(99, 1, 1))
+    expect(Midnight.parse('99-1-1')).toSameDate('0099-01-01')
+    expect(Midnight.parse('99/1/1')).toSameDate('0099-01-01')
+    expect(Midnight.parse('99.1.1')).toSameDate('0099-01-01')
+    expect(Midnight.parse('00990101')).toSameDate('0099-01-01')
 
-    expect(Midnight.parse('100-1-1')).toEqual(new Midnight(100, 1, 1))
-    expect(Midnight.parse('100/1/1')).toEqual(new Midnight(100, 1, 1))
-    expect(Midnight.parse('100.1.1')).toEqual(new Midnight(100, 1, 1))
-    expect(Midnight.parse('01000101')).toEqual(new Midnight(100, 1, 1))
+    expect(Midnight.parse('100-1-1')).toSameDate('0100-01-01')
+    expect(Midnight.parse('100/1/1')).toSameDate('0100-01-01')
+    expect(Midnight.parse('100.1.1')).toSameDate('0100-01-01')
+    expect(Midnight.parse('01000101')).toSameDate('0100-01-01')
   })
 
   test('invalid value', () => {
