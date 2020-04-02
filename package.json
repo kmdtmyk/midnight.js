@@ -27,7 +27,7 @@
     "babel-loader": "^7.1.5",
     "babel-plugin-transform-builtin-extend": "^1.1.2",
     "dateformat": "^3.0.3",
-    "jest": "^24.9.0",
+    "jest": "^25.2.4",
     "webpack": "^4.41.6",
     "webpack-cli": "^3.3.11"
   },
